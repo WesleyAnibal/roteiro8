@@ -67,6 +67,7 @@ public class HashtableClosedAddressImpl<T> extends AbstractHashtableClosedAddres
 		if (this.table[num] == null) {
 			LinkedList<T> linked = new LinkedList<>();
 			linked.add(element);
+			this.table[num] = linked;
 
 		} else {
 			((LinkedList<T>) this.table[num]).add(element);
