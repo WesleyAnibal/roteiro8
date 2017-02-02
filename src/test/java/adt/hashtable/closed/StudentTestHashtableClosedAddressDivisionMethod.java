@@ -54,9 +54,10 @@ public class StudentTestHashtableClosedAddressDivisionMethod {
 	@Test
 	public void testRemove() {
 		int currentSize = table1.size();
+		table1.insert(200);
 		table1.remove(200); // elemento existente
-		assertEquals(currentSize - 1, table1.size());
-		assertEquals(-1, table1.indexOf(200));
+		assertEquals(currentSize , table1.size());
+		assertEquals(99, table1.indexOf(200));
 	}
 
 	@Test

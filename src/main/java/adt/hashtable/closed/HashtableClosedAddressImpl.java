@@ -61,7 +61,7 @@ public class HashtableClosedAddressImpl<T> extends AbstractHashtableClosedAddres
 
 	@Override
 	public void insert(T element) {
-		int num = ((HashFunctionClosedAddress<T>) hashFunction).hash(element);
+		int num = hash(element);
 		if (num > table.length - 1)
 			return;
 		if (this.table[num] == null) {
@@ -78,7 +78,7 @@ public class HashtableClosedAddressImpl<T> extends AbstractHashtableClosedAddres
 
 	@Override
 	public void remove(T element) {
-		int num = ((HashFunctionClosedAddress<T>) hashFunction).hash(element);
+		int num = hash(element);
 		if (num > table.length - 1 || this.table[num] == null)
 			return;
 		if (this.table[num] != null) {
@@ -97,14 +97,25 @@ public class HashtableClosedAddressImpl<T> extends AbstractHashtableClosedAddres
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int num = hash(element);
+		if(this.table[num] == null || !((LinkedList<T>) this.table[num]).contains(element)) return null;
+		else{
+			return element;
+		}
+	}
+
+	private int hash(T element) {
+		int num = ((HashFunctionClosedAddress<T>) hashFunction).hash(element);
+		return num;
 	}
 
 	@Override
 	public int indexOf(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int num = hash(element);
+		if(this.table[num] == null || !((LinkedList<T>) this.table[num]).contains(element)) return -1;
+		else{
+			return num;
+		}
 	}
 
 }
